@@ -8,9 +8,12 @@ def main():
     print(f"Screen height: {SCREEN_HEIGHT}")
     
     pygame.init()
-    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    running = True
 
+    screen = pygame.display.set_mode((SCREEN_WIDTH - 1, SCREEN_HEIGHT))
+    clock = pygame.time.Clock()
+    running = True
+    dt = 0.0
+    
     while running:
         # call to logger.py to get game state logs 
         log_state()
@@ -27,6 +30,8 @@ def main():
 
         # flip() allows display to put game data on screen 
         pygame.display.flip()
+
+        dt = clock.tick(60) / 1000
 
 
 
