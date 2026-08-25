@@ -9,13 +9,12 @@ def main():
     print(f"Screen height: {SCREEN_HEIGHT}")
     
     pygame.init()
-
     screen = pygame.display.set_mode((SCREEN_WIDTH - 1, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
-    running = True
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     dt = 0.0
     
-    while running:
+    while True:
         # call to logger.py to get game state logs 
         log_state()
 
@@ -28,11 +27,6 @@ def main():
         # fill screen with black
         # also wipes anything from last frame
         screen.fill("black")
-
-        # instantiate player
-        x = SCREEN_WIDTH / 2
-        y = SCREEN_HEIGHT / 2
-        player = Player(x, y)
 
         # re-render player on screen each frame
         player.draw(screen)
