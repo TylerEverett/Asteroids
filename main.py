@@ -11,6 +11,9 @@ def main():
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH - 1, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+    Player.containers = (updatable, drawable)
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     dt = 0.0
     
@@ -29,10 +32,11 @@ def main():
         screen.fill("black")
 
         # re-render player on screen each frame
-        player.draw(screen)
+        for obj in drawable:
+            obj.draw(screen)
 
         # update player for rotation/movement
-        player.update(dt)
+        updatable.update(dt)
 
         # flip() allows display to put game data on screen 
         pygame.display.flip()
