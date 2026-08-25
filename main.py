@@ -1,6 +1,7 @@
 import pygame
 from constants import SCREEN_WIDTH, SCREEN_HEIGHT
 from logger import log_state
+from player import Player
 
 def main():
     print(f"Starting Asteroids with pygame version: {pygame.version.ver}")
@@ -27,6 +28,14 @@ def main():
         # fill screen with black
         # also wipes anything from last frame
         screen.fill("black")
+
+        # instantiate player
+        x = SCREEN_WIDTH / 2
+        y = SCREEN_HEIGHT / 2
+        player = Player(x, y)
+
+        # re-render player on screen each frame
+        player.draw(screen)
 
         # flip() allows display to put game data on screen 
         pygame.display.flip()
