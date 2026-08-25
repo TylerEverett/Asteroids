@@ -37,6 +37,9 @@ def main():
         # re-render player on screen each frame
         player.draw(screen)
 
+        # update player for rotation/movement
+        player.update(dt)
+
         # flip() allows display to put game data on screen 
         pygame.display.flip()
 
