@@ -1,7 +1,7 @@
 import pygame
 
 from circleshape import CircleShape
-from contstants import LINE_WIDTH, SHOT_RADIUS
+from constants import LINE_WIDTH, SHOT_RADIUS
 
 class Shot(CircleShape):
     def __init__(self, x: float, y: float) -> None:
