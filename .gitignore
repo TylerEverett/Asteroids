@@ -11,3 +11,5 @@ wheels/
 
 # Log files
 logger.py 
+
+game_events.jsonl
