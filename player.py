@@ -40,6 +40,7 @@ class Player(CircleShape):
         self.position += rotated_with_speed_vector
 
     def update(self, dt: float) -> None:
+        self.shot_cooldown_timer -= dt
         keys = pygame.key.get_pressed()
 
         if keys[pygame.K_a]:
@@ -52,17 +53,19 @@ class Player(CircleShape):
             self.move(-dt)
         if keys[pygame.K_SPACE]:
             self.shoot()
-            self.shot_cooldown_timer -= dt
 
     def shoot(self) -> None:
         # If the current value of the timer is greater than 0, prevent the player from shooting.
         # Otherwise, set the timer equal to PLAYER_SHOOT_COOLDOWN_SECONDS.
         if(self.shot_cooldown_timer > 0):
            # do not shoot
-            pass
-        else:
-            self.shot_cooldown_timer = PLAYER_SHOOT_COOLDOWN_SECONDS
-            shot = Shot(self.position.x, self.position.y)
-            shot.velocity = pygame.Vector2(0, 1).rotate(self.rotation) * PLAYER_SHOOT_SPEED
+            return
+
+        # reset shot shot_cooldown_timer
+        self.shot_cooldown_timer = PLAYER_SHOOT_COOLDOWN_SECONDS
+
+        # instantiate shot class and give the bullet its velocity
+        shot = Shot(self.position.x, self.position.y)
+        shot.velocity = pygame.Vector2(0, 1).rotate(self.rotation) * PLAYER_SHOOT_SPEED
 
 
