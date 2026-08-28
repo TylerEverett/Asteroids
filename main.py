@@ -58,9 +58,18 @@ def main():
         # update player for rotation/movement
         updatable.update(dt)
 
-        # iterate over obj in asteroids container 
-        for obj in asteroids:
-            if(obj.collides_with(player)):
+        # iterate over obj in asteroids container
+            # end game if player hits asteroid
+        # iterate over shots in shots container
+            # destroy shot and asteriod if they collide
+        for asteroid in asteroids:
+            for shot in shots:
+                if(shot.collides_with(asteroid)):
+                    log_event("asteroid_shot")
+                    shot.kill()
+                    asteroid.kill()
+
+            if(asteroid.collides_with(player)):
                 log_event("player_hit")
                 print("Game over!")
                 sys.exit()
